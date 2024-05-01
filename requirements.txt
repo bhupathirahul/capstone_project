@@ -1,6 +1,5 @@
 pip
 flask
-re
 numpy
 tensorflow
 torch

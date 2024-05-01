@@ -35,4 +35,4 @@ def predict():
         return render_template('predict.html', predicted_weather=predicted_weather)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, jsonify
+from flask import Flask, render_template, request, redirect
 import json
 import os
 import re
@@ -110,5 +110,5 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 

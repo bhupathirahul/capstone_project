@@ -1,0 +1,40 @@
+/* CSS for background video */
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.video-wrap video {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+/* CSS for main content */
+.main {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.input-box {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+}

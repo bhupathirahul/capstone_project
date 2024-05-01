@@ -1,0 +1,7 @@
+flask
+json
+os
+re
+numpy
+tensorflow
+torch

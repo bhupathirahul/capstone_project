@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>weather forecasting</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="video-background">
+        <div class="video-wrap">
+            <video autoplay muted loop>
+                <source src="{{ url_for('static', filename='background.mp4') }}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="main">
+        <h1>Weather Forecasting</h1>
+        <h3>Enter your login credentials</h3>
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        {% if noterror %}
+        <p style="color: rgb(2, 72, 2);">{{ noterror }} <br> Enter Username and Password</p>
+        {% endif %}
+        <form action="/login" method="post">
+            <label for="username">
+                Username:
+            </label>
+            <input type="text" id="username" name="username" placeholder="Enter your Username" required>
+
+            <label for="password">
+                Password:
+            </label>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
+            <div class="wrap">
+                <button type="submit">
+                    Login
+                </button>
+            </div>
+        </form>
+        <p style="color: rgba(164, 0, 0, 0.811);">Not registered? <a href="/signup" style="text-decoration: none;">Create an account</a></p>
+    </div>
+</body>
+
+</html>

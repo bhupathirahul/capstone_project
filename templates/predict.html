@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- <div class="background-video">
+        <video id="video-wrap" autoplay muted loop>
+            <source src="{{ url_for('static', filename='default.mp4') }}" type="video/mp4">
+        </video>
+    </div> -->
+
+    <div class="main">
+        <h1>Weather Prediction</h1>
+        <div class="input-box">
+            <form action="/predict" method="post">
+                <label for="precipitation">Precipitation:</label>
+                <input type="number" id="precipitation" name="precipitation" required step="0.01"><br>
+
+                <label for="temp_max">Max Temperature:</label>
+                <input type="number" id="temp_max" name="temp_max" required><br>
+
+                <label for="temp_min">Min Temperature:</label>
+                <input type="number" id="temp_min" name="temp_min" required><br>
+
+                <label for="wind">Wind:</label>
+                <input type="number" id="wind" name="wind" required step="0.01"><br>
+
+                <label for="year">Year:</label>
+                <input type="number" id="year" name="year" required><br>
+
+                <label for="month">Month:</label>
+                <input type="number" id="month" name="month" required><br>
+
+                <label for="day">Day:</label>
+                <input type="number" id="day" name="day" required><br>
+
+                <button type="submit">Predict</button>
+            </form>
+        </div>
+
+        {% if predicted_weather %}
+        <div class="prediction">
+            <h2>Predicted Weather:</h2>
+            <p>{{ predicted_weather }}</p>
+        </div>
+        {% endif %}
+    </div>
+ <!-- <script>
+        $(document).ready(function(){
+            // Function to change background video based on prediction
+            function changeBackgroundVideo(prediction) {
+                var video = document.getElementById("background-video");
+                if (prediction === "drizzle") {
+                    video.src = "{{ url_for('static', filename='drizzle.mp4') }}";
+                } else if (prediction === "fog") {
+                    video.src = "{{ url_for('static', filename='fog.mp4') }}";
+                } else if (prediction === "rain") {
+                    video.src = "{{ url_for('static', filename='rain.mp4') }}";
+                } else if (prediction === "snow") {
+                    video.src = "{{ url_for('static', filename='snow.mp4') }}";
+                } else if (prediction === "sun") {
+                    video.src = "{{ url_for('static', filename='sun.mp4') }}";
+                } else {
+                    video.src = "{{ url_for('static', filename='default.mp4') }}";
+                }
+                video.load();
+            }
+
+            // Call the function when the page loads
+            changeBackgroundVideo('{{ prediction }}');
+        });
+    </script> -->
+   
+</body>
+</html>

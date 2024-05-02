@@ -8,11 +8,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <!-- <div class="background-video">
-        <video id="video-wrap" autoplay muted loop>
+    <div class="background-video">
+        <video id="background-video" autoplay muted loop width="120" >
             <source src="{{ url_for('static', filename='default.mp4') }}" type="video/mp4">
         </video>
-    </div> -->
+    </div>
 
     <div class="main">
         <h1>Weather Prediction</h1>
@@ -45,25 +45,26 @@
 
         {% if predicted_weather %}
         <div class="prediction">
-            <h2>Predicted Weather:</h2>
-            <p>{{ predicted_weather }}</p>
+            <h2 style="color: rgb(153, 25, 3);">Predicted Weather:</h2>
+            <h2 style="color: rgb(1, 1, 2);">{{ predicted_weather }}</h2>
         </div>
         {% endif %}
     </div>
- <!-- <script>
+
+    <script>
         $(document).ready(function(){
             // Function to change background video based on prediction
-            function changeBackgroundVideo(prediction) {
+            function changeBackgroundVideo(predicted_weather) {
                 var video = document.getElementById("background-video");
-                if (prediction === "drizzle") {
+                if (predicted_weather === "drizzle") {
                     video.src = "{{ url_for('static', filename='drizzle.mp4') }}";
-                } else if (prediction === "fog") {
+                } else if (predicted_weather === "fog") {
                     video.src = "{{ url_for('static', filename='fog.mp4') }}";
-                } else if (prediction === "rain") {
+                } else if (predicted_weather === "rain") {
                     video.src = "{{ url_for('static', filename='rain.mp4') }}";
-                } else if (prediction === "snow") {
+                } else if (predicted_weather === "snow") {
                     video.src = "{{ url_for('static', filename='snow.mp4') }}";
-                } else if (prediction === "sun") {
+                } else if (predicted_weather === "sun") {
                     video.src = "{{ url_for('static', filename='sun.mp4') }}";
                 } else {
                     video.src = "{{ url_for('static', filename='default.mp4') }}";
@@ -72,9 +73,8 @@
             }
 
             // Call the function when the page loads
-            changeBackgroundVideo('{{ prediction }}');
+            changeBackgroundVideo('{{ predicted_weather }}');
         });
-    </script> -->
-   
+    </script>
 </body>
 </html>

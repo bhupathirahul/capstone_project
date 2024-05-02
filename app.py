@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 import json
 import os
 import re
@@ -79,7 +79,7 @@ def signup():
             return render_template('index.html', noterror='Registration successful!')
 
         return render_template('signup.html', error=error)
-    
+
 model = tf.keras.models.load_model('model_bnn.h5')
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -110,5 +110,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run()
-
+    app.run(debug=True)

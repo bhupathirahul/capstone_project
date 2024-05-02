@@ -1,40 +1,69 @@
+/* style1.css */
+
 /* CSS for background video */
 .background-video {
     position: fixed;
     top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
     overflow: hidden;
+    z-index: -1;
 }
 
-.video-wrap {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
-}
-
-.video-wrap video {
+.background-video video {
     min-width: 100%;
     min-height: 100%;
 }
 
-/* CSS for main content */
+/* Main content styling */
 .main {
     position: relative;
     z-index: 1;
     padding: 20px;
     text-align: center;
     color: #fff;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    margin: auto; /* Center the container */
+    margin-top: 50px; /* Adjust top margin as needed */
 }
 
-.input-box {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    padding: 20px;
+h1 {
+    color: #af4c60;
+}
+
+/* Input styling */
+label {
+    display: block;
+    width: 100%;
+    margin-top: 20px; /* Adjust top margin for labels */
+    margin-bottom: 10px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
+}
+
+input {
+    display: block;
+    width: calc(100% - 20px); /* Adjust width with padding */
+    margin-bottom: 20px; /* Adjust bottom margin for inputs */
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 15px;
     border-radius: 10px;
-    margin-top: 50px;
+    margin-top: 20px; /* Adjust top margin for button */
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #000000;
+    width: 100%;
+    font-size: 16px;
 }

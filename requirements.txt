@@ -3,6 +3,5 @@ numpy
 pandas
 torch
 tensorflow
-tensorflow-tensorrt
 keras
 gunicorn

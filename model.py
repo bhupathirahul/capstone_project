@@ -49,6 +49,8 @@ test_accuracy = accuracy_score(y_test, predictions)
 
 print('Accuracy Score on Test Data : {:.2f}%'.format(test_accuracy * 100))
 
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
 # Save the BNN model (consider using a different filename to avoid conflicts)
 model.save('model_bnn.h5')
 

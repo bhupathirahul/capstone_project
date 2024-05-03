@@ -81,6 +81,8 @@ def signup():
         return render_template('signup.html', error=error)
 
 model = tf.keras.models.load_model('model_bnn.h5')
+# Compile the model
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():

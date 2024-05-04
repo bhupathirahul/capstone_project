@@ -1,10 +1,12 @@
 import numpy as np
 import pandas as pd
+from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dropout 
 import tensorflow as tf
 
 data = pd.read_csv("seattle-weather.csv")
@@ -17,10 +19,12 @@ weather_dict = {label: value for label, value in zip(data['weather_label'], data
 
 data = data.drop('weather', axis=1).set_index('date')
 
-x = data.drop(["weather_label"], axis=1)
+print(data.head())
+
+x = data.drop(["weather_label"], axis= 1)
 y = data["weather_label"]
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=2)
+x_train, x_test ,y_train ,y_test = train_test_split(x,y, test_size=0.2,random_state=2)
 
 # Define Bayesian Neural Network Model
 model = Sequential()
@@ -39,9 +43,15 @@ model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
 model.fit(x_train, y_train, epochs=50, batch_size=32)  # Adjust epochs and batch size as needed
 
 # Evaluate the model on test data
-test_loss, test_accuracy = model.evaluate(x_test, y_test)
+predictions = model.predict(x_test)  # Use predict_classes for categorical predictions
+predictions = np.argmax(predictions, axis=1)
+test_accuracy = accuracy_score(y_test, predictions)
 
 print('Accuracy Score on Test Data : {:.2f}%'.format(test_accuracy * 100))
 
-# Save the BNN model with a different filename
-model.save('model_bnn_trained.h5')
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+# Save the BNN model (consider using a different filename to avoid conflicts)
+model.save('model_bnn.h5')
+
+

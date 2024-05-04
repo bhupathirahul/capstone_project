@@ -80,7 +80,7 @@ def signup():
 
         return render_template('signup.html', error=error)
 
-model = tf.keras.models.load_model('model_bnn_trained.h5')
+model = tf.keras.models.load_model('model_bnn.h5')
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():

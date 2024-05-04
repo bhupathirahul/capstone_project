@@ -80,7 +80,13 @@ def signup():
 
         return render_template('signup.html', error=error)
 
+from model import x_train,y_train
 model = tf.keras.models.load_model('model_bnn.h5')
+# Compile the model with appropriate optimizer and loss function for BNN
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=50, batch_size=32)
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():

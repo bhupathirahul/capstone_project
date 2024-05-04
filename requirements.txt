@@ -5,4 +5,5 @@ pandas
 torch
 tensorflow
 keras
+scikit-learn
 gunicorn

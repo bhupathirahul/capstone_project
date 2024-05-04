@@ -82,6 +82,7 @@ def signup():
 
 
 model = tf.keras.models.load_model('model_bnn.h5')
+model.compiled_metrics == None
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():

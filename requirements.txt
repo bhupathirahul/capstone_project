@@ -4,6 +4,7 @@ numpy
 pandas
 torch
 tensorflow
+pickle
 keras
 scikit-learn
 gunicorn

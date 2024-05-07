@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, redirect, jsonify
-import json
+from flask import Flask, render_template, request
 import os
 import re
 import numpy as np
+import json
 import tensorflow as tf
-import torch
-from keras.models import load_model
+import pickle
+from tensorflow.keras.models import model_from_json
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -27,6 +27,18 @@ def save_users(users):
     with open(USERS_FILE, 'w') as f:
         json.dump(users, f)
 
+# Function to validate password complexity
+def is_valid_password(password):
+    if len(password) < 8:
+        return False
+    if not re.search("[A-Z]", password):
+        return False
+    if not re.search("[0-9]", password):
+        return False
+    if not re.search("[!@#$%^&*?]", password):
+        return False
+    return True
+
 # Route for home page
 @app.route('/')
 def index():
@@ -42,19 +54,6 @@ def login():
         return render_template('predict.html')
     else:
         return render_template('index.html', error='Invalid username or password') 
-
-
-# Function to validate password complexity
-def is_valid_password(password):
-    if len(password) < 8:
-        return False
-    if not re.search("[A-Z]", password):
-        return False
-    if not re.search("[0-9]", password):
-        return False
-    if not re.search("[!@#$%^&*?]", password):
-        return False
-    return True
 
 # Route for signup
 @app.route('/signup', methods=['GET', 'POST'])
@@ -80,8 +79,18 @@ def signup():
 
         return render_template('signup.html', error=error)
 
+# Load model architecture
+with open('model_architecture.json', 'r') as json_file:
+    loaded_model_json = json_file.read()
+model = model_from_json(loaded_model_json)
 
-model = tf.keras.models.load_model('model_bnn.h5', compile=False)
+# Load model weights
+model.load_weights("model_weights.weights.h5")
+
+# Compile the loaded model
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
@@ -107,8 +116,6 @@ def predict():
         predicted_weather = weather_mapping.get(predicted_class, 'Unknown')
 
         return render_template('predict.html', predicted_weather=predicted_weather)
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)

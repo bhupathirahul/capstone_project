@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}">
+</head>
+<body>
+    <div class="background-video">
+        <video id="background-video" autoplay muted loop width="120">
+            <source src="{{ url_for('static', filename='default.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="main">
+        <h2 style="color: rgb(1, 1, 2);">Temperature and Humidity in {{ location }}</h2>
+        <div class="graphs">
+            <div class="temperature-graph">
+                <img src="{{ url_for('static', filename='temperature_graph.png') }}" alt="Temperature Graph">
+                <p>Max and Min Temperatures</p>
+            </div>
+            <div class="humidity-graph">
+                <img src="{{ url_for('static', filename='humidity_graph.png') }}" alt="Humidity Graph">
+                <p>Humidity</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

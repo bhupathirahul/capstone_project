@@ -13,7 +13,7 @@ st.set_page_config(page_title="Weather Prediction App", page_icon=":partly_sunny
 
 df = px.data.iris()
 
-@st.cache
+@st.cache_data
 def get_img_as_base64(file):
     with open(file, "rb") as f:
         data = f.read()
@@ -76,7 +76,7 @@ if page == "Home":
         if feature_name in ["year", "month", "day"]:
             feature_value = st.number_input(f"Enter value for {feature_name}:", step=1, format="%d", value=None)
         else:
-            feature_value = st.number_input(f"Enter value for {feature_name}:", value=0)
+            feature_value = st.number_input(f"Enter value for {feature_name}:", value=None)
         user_input.append(feature_value)
 
     # Add a button to trigger prediction
